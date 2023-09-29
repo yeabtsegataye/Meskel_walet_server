@@ -9,6 +9,7 @@ const handle_get_all =async(req, res)=>{
         res.status(500).json({ error: 'Error fetching money collections' });
       }
 }
+//////////////////////
 const handle_add=async(req, res)=>{
     try {
         const newCollection = new MoneyCollection(req.body);
@@ -18,6 +19,7 @@ const handle_add=async(req, res)=>{
         res.status(400).json({ error: 'Error creating money collection' });
       }
 }
+/////////////////////
 const handle_delete=async(req, res)=>{
     const { id } = req.params;
 
@@ -33,25 +35,47 @@ const handle_delete=async(req, res)=>{
     res.status(400).json({ error: 'Error deleting money collection' });
   }
 }
-const handle_edit =async(req, res)=>{
+///////////////////
+const handle_edit = async (req, res) => {
     const { id } = req.params;
-
-  try {
-    const updatedCollection = await MoneyCollection.findByIdAndUpdate(
-      id,
-      req.body,
-      { new: true }
-    );
-
-    if (!updatedCollection) {
-      return res.status(404).json({ error: 'Money collection not found' });
+    const { name, phone, monthlyPayments } = req.body;
+    const updates = {};
+  
+    if (name) {
+      updates.name = name;
     }
-
-    res.status(200).json(updatedCollection);
-  } catch (err) {
-    res.status(400).json({ error: 'Error updating money collection' });
-  }
-}
+  
+    if (phone) {
+      updates.phone = phone;
+    }
+  
+    if (monthlyPayments) {
+      for (const month in monthlyPayments) {
+        if (monthlyPayments.hasOwnProperty(month)) {
+          updates[`monthlyPayments.${month}`] = monthlyPayments[month];
+        }
+      }
+    }
+  
+    try {
+      const updatedCollection = await MoneyCollection.findByIdAndUpdate(
+        id,
+        updates,
+        { new: true }
+      );
+  
+      if (!updatedCollection) {
+        return res.status(404).json({ error: 'Money collection not found' });
+      }
+  
+      res.status(200).json(updatedCollection);
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ error: 'Error updating money collection' });
+    }
+  };
+  
+  
 
 module.exports= {
     handle_get_all,
