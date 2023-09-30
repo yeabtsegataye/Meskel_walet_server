@@ -17,13 +17,13 @@ jobs:
         run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
       - name: Build and push Node.js API image
-        working-directory: ./api
+        working-directory: api
         run: |
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/node-app:latest .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/node-app:latest
 
       - name: Build and push React client image
-        working-directory: ./client
+        working-directory: client
         run: |
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/react-app:latest .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/react-app:latest
