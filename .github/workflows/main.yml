@@ -17,6 +17,7 @@ jobs:
         run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
       - name: Deploy with Docker Compose
+        working-directory: ./
         run: |
           docker-compose up -d
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/mern-app:latest
