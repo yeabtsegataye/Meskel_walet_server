@@ -21,6 +21,7 @@ const moneyCollectionSchema = new mongoose.Schema({
     Megabit: Number,
     Miyaziya: Number,
     Ginbot: Number,
+    Sene: Number,
     Hamle: Number,
     Nehase: Number,
     Meskerm: Number,
