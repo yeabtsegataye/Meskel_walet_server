@@ -4,16 +4,14 @@ const moneyCollectionSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
   },
   mobile: {
     type: String,
     required: true,
-    unique: true,
   },
-  Gender :{
+  Gender: {
     type: String,
-    require: true,
+    required: true,
   },
   monthlyPayments: {
     Tikmt: Number,
@@ -31,4 +29,6 @@ const moneyCollectionSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('MoneyCollection', moneyCollectionSchema);
+const MoneyCollection = mongoose.model('MoneyCollection', moneyCollectionSchema);
+
+module.exports = MoneyCollection;

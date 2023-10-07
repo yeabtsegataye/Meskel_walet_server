@@ -13,6 +13,7 @@ const handle_get_all =async(req, res)=>{
 const handle_add = async (req, res) => {
   try {
     const newData = req.body;
+    console.log(newData)
     const newCollection = new MoneyCollection(newData);
     await newCollection.save();
     res.status(201).json(newCollection);
