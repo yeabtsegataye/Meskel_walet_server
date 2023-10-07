@@ -6,13 +6,16 @@ const moneyCollectionSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  phone: {
+  mobile: {
     type: String,
     required: true,
     unique: true,
   },
+  Gender :{
+    type: String,
+    require: true,
+  },
   monthlyPayments: {
-    Meskerm: Number,
     Tikmt: Number,
     Hidar: Number,
     Tahisas: Number,

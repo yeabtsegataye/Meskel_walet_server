@@ -10,15 +10,17 @@ const handle_get_all =async(req, res)=>{
       }
 }
 //////////////////////
-const handle_add=async(req, res)=>{
-    try {
-        const newCollection = new MoneyCollection(req.body);
-        await newCollection.save();
-        res.status(201).json(newCollection);
-      } catch (err) {
-        res.status(400).json({ error: 'Error creating money collection' });
-      }
-}
+const handle_add = async (req, res) => {
+  try {
+    const newData = req.body;
+    const newCollection = new MoneyCollection(newData);
+    await newCollection.save();
+    res.status(201).json(newCollection);
+  } catch (err) {
+    res.status(400).json({ error: 'Error creating money collection' });
+  }
+};
+
 /////////////////////
 const handle_delete=async(req, res)=>{
     const { id } = req.params;

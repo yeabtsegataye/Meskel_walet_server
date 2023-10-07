@@ -3,7 +3,7 @@ const User = require("../model/user");
 const jwt = require("jsonwebtoken");
 
 const tokens = (id) => {
-  return jwt.sign({ id }, process.env.SECRET, { expiresIn: "3d" });
+  return jwt.sign({ id }, process.env.SECRETE, { expiresIn: "3d" });
 };
 /////////////////////////
 const registerUser = async (req, res) => {
