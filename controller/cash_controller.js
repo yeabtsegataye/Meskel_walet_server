@@ -1,5 +1,4 @@
 const MoneyCollection = require('../model/months')
-const mongoose = require('mongoose')
 
 const handle_get_all =async(req, res)=>{
     try {
@@ -8,6 +7,16 @@ const handle_get_all =async(req, res)=>{
       } catch (err) {
         res.status(500).json({ error: 'Error fetching money collections' });
       }
+}
+///////////////
+const handle_get_one =async(req, res)=>{
+  const id = req.params.id
+  try {
+      const collections = await MoneyCollection.findById(id);
+      res.status(200).json(collections);
+    } catch (err) {
+      res.status(500).json({ error: 'Error fetching money collections' });
+    }
 }
 //////////////////////
 const handle_add = async (req, res) => {
@@ -41,24 +50,53 @@ const handle_delete=async(req, res)=>{
 ///////////////////
 const handle_edit = async (req, res) => {
     const { id } = req.params;
-    const { name, phone, monthlyPayments } = req.body;
+    const { name, gender,mobile,Tikmt,Hidar, Tahisas,Tir,Yekatit,Megabit,Miyaziya,Ginbot,Sene,Hamle,Nehase,Meskerm} = req.body;
     const updates = {};
   
     if (name) {
       updates.name = name;
     }
-  
-    if (phone) {
-      updates.phone = phone;
+   if (gender) {
+      updates.gender = gender;
     }
-  
-    if (monthlyPayments) {
-      for (const month in monthlyPayments) {
-        if (monthlyPayments.hasOwnProperty(month)) {
-          updates[`monthlyPayments.${month}`] = monthlyPayments[month];
-        }
-      }
+    if (mobile) {
+      updates.mobile = mobile;
     }
+    if (mobile) {
+      updates.mobile = mobile;
+    }if (Tikmt) {
+      updates.Tikmt = Tikmt;
+    }if (Hidar) {
+      updates.Hidar = Hidar;
+    }if (Tahisas) {
+      updates.Tahisas = Tahisas;
+    }if (Tir) {
+      updates.Tir = Tir;
+    }if (Yekatit) {
+      updates.Yekatit = Yekatit;
+    }if (Megabit) {
+      updates.Megabit = Megabit;
+    }if (Miyaziya) {
+      updates.Miyaziya = Miyaziya;
+    }if (Ginbot) {
+      updates.Ginbot = Ginbot;
+    }if (Sene) {
+      updates.Sene = Sene;
+    }if (Hamle) {
+      updates.Hamle = Hamle;
+    }if (Nehase) {
+      updates.Nehase = Nehase;
+    }if (Meskerm) {
+      updates.Meskerm = Meskerm;
+    }
+   
+    // if (monthlyPayments) {
+    //   for (const month in monthlyPayments) {
+    //     if (monthlyPayments.hasOwnProperty(month)) {
+    //       updates[`monthlyPayments.${month}`] = monthlyPayments[month];
+    //     }
+    //   }
+    // }
   
     try {
       const updatedCollection = await MoneyCollection.findByIdAndUpdate(
@@ -84,5 +122,6 @@ module.exports= {
     handle_get_all,
     handle_add,
     handle_delete,
+    handle_get_one,
     handle_edit
 }

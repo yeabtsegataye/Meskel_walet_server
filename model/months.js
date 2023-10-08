@@ -5,28 +5,51 @@ const moneyCollectionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  gender: {
+    type: String,
+    required: true,
+  },
   mobile: {
     type: String,
     required: true,
   },
-  Gender: {
-    type: String,
-    required: true,
+  Tikmt: {
+    type: Number
   },
-  monthlyPayments: {
-    Tikmt: Number,
-    Hidar: Number,
-    Tahisas: Number,
-    Tir: Number,
-    Yekatit: Number,
-    Megabit: Number,
-    Miyaziya: Number,
-    Ginbot: Number,
-    Sene: Number,
-    Hamle: Number,
-    Nehase: Number,
-    Meskerm: Number,
+  Hidar: {
+    type: Number
   },
+  Tahisas: {
+    type: Number
+  },
+  Tir: {
+    type: Number
+  },
+  Yekatit: {
+    type: Number
+  },
+  Megabit: {
+    type: Number
+  },
+  Miyaziya: {
+    type: Number
+  },
+  Ginbot: {
+    type: Number
+  },
+  Sene: {
+    type: Number
+  },
+  Hamle: {
+    type: Number
+  },
+  Nehase: {
+    type: Number
+  },
+  Meskerm: {
+    type: Number
+  },
+
 });
 
 const MoneyCollection = mongoose.model('MoneyCollection', moneyCollectionSchema);
