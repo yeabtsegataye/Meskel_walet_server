@@ -2,26 +2,6 @@ const MoneyCollection = require('../model/months')
 const schedule = require('node-schedule');
 const twilio = require('twilio');
 
-//////////////
-// const accountSid = 'ACf2ce77c7e79a5929de9899dbd6606b02';
-// const authToken = '99cc1c6865eb3e6b1f43cdfe35536274';
-// const twilioClient = new twilio(accountSid, authToken);
-// const to = +251961948019
-// const from = +12564725971
-// const body = "ሰላም ይህ የአብነት መንደር የመስቀል ክብረ በአል ወራዊ መዋጮ ማስታወሻ መልእክት ነው ። ይህን መልእክት እንደደረስዎት ለ ናሆም ታየ ወይም ለ ሳሙኤል ሸዋንግዛው ብሩን መስጠት ይችላሉ"
-
-// schedule.scheduleJob('* * * * *', async () => {
-// try {
-//   const message = await twilioClient.messages.create({
-//     to,
-//     from,
-//     body,
-//   });
-//   console.log('done');
-// } catch (error) {
-//   console.log(error.message)
-// }});
-/////////
 const handle_get_all =async(req, res)=>{
     try {
         const collections = await MoneyCollection.find();
@@ -111,14 +91,6 @@ const handle_edit = async (req, res) => {
     }if (Meskerm) {
       updates.Meskerm = Meskerm;
     }
-   
-    // if (monthlyPayments) {
-    //   for (const month in monthlyPayments) {
-    //     if (monthlyPayments.hasOwnProperty(month)) {
-    //       updates[`monthlyPayments.${month}`] = monthlyPayments[month];
-    //     }
-    //   }
-    // }
   
     try {
       const updatedCollection = await MoneyCollection.findByIdAndUpdate(
@@ -138,7 +110,26 @@ const handle_edit = async (req, res) => {
     }
   };
   
-  
+  //////////////
+// const accountSid = 'ACf2ce77c7e79a5929de9899dbd6606b02';
+// const authToken = '99cc1c6865eb3e6b1f43cdfe35536274';
+// const twilioClient = new twilio(accountSid, authToken);
+// const to = +251961948019
+// const from = +12564725971
+// const body = "ሰላም ይህ የአብነት መንደር የመስቀል ክብረ በአል ወራዊ መዋጮ ማስታወሻ መልእክት ነው ። ይህን መልእክት እንደደረስዎት ለ ናሆም ታየ ወይም ለ ሳሙኤል ሸዋንግዛው ብሩን መስጠት ይችላሉ"
+
+// schedule.scheduleJob('* * * * *', async () => {
+// try {
+//   const message = await twilioClient.messages.create({
+//     to,
+//     from,
+//     body,
+//   });
+//   console.log('done');
+// } catch (error) {
+//   console.log(error.message)
+// }});
+/////////
 
 module.exports= {
     handle_get_all,

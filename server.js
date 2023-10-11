@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require('dotenv')
+const {corsOptions} = require('./middleware/cors_middleware')
 dotenv.config()
 //////
 const cors = require("cors");
@@ -8,7 +9,7 @@ const routers = require("./router/meskel");
 const user = require('./router/user')
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 mongoose.connect(process.env.MONGO_DB).then(() => {
   app.listen(process.env.PORT, () => {
